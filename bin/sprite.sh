@@ -10,28 +10,23 @@
 # Grabbing options
 while [[ $# > 1 ]]; do
   key="$1"
-  echo $key
   case $key in
     -o|--output)
     DEST_FILE="$2"
-    echo $2
-    shift # past argument
+    shift
     ;;
     -v|--viewbox)
     VIEWBOX_SIZE="$2"
-    echo $2
-    shift # past argument
+    shift
     ;;
     -p|--prefix)
     ICON_PREFIX="$2"
-    echo $2
-    shift # past argument
+    shift
     ;;
     *)
-            # unknown option
     ;;
   esac
-  shift # past argument or value
+  shift
 done
 
 # Set configuration
