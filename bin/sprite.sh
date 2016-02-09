@@ -7,23 +7,40 @@
 # https://css-tricks.com/svg-symbol-good-choice-icons/
 # https://css-tricks.com/svg-use-external-source/
 
-# 1. Generate `sprite.svg` from SVG files in current folder.
-#    $ bin/sprite.sh
-# 2. Generate `sprite.svg` from SVG files in `assets/images/icons`.
-#    $ bin/sprite.sh "assets/images/icons/*"
-# 3. Generate `_includes/icons.svg` from SVG files in `assets/images/icons`.
-#    $ bin/sprite.sh "assets/images/icons/*" _includes/icons.svg
-# 4. Generate `_includes/icons.svg` from SVG files in `assets/images/icons` with a view box of `0 0 16 16`.
-#    $ bin/sprite.sh "assets/images/icons/*" _includes/icons.svg "0 0 16 16"
-# 5. Generate `_includes/icons.svg` from SVG files in `assets/images/icons` with a view box of `0 0 16 16`, and `id` attributes prefixed with `i_`.
-#    $ bin/sprite.sh "assets/images/icons/*" _includes/icons.svg "0 0 16 16" "i_"
+# Grabbing options
+while [[ $# > 1 ]]; do
+  key="$1"
+  echo $key
+  case $key in
+    -o|--output)
+    DEST_FILE="$2"
+    echo $2
+    shift # past argument
+    ;;
+    -v|--viewbox)
+    VIEWBOX_SIZE="$2"
+    echo $2
+    shift # past argument
+    ;;
+    -p|--prefix)
+    ICON_PREFIX="$2"
+    echo $2
+    shift # past argument
+    ;;
+    *)
+            # unknown option
+    ;;
+  esac
+  shift # past argument or value
+done
 
+# Set configuration
 TMP_FOLDER=.tmp
-SVG_FILES=${1:-"./*"}            # Folder containing all SVG files
-DEST_FILE=${2:-./sprite.svg}     # Destination file for the sprite
-VIEWBOX_SIZE=${3:-"0 0 20 20"}   # Viewbox size for <symbol> icons
-ICON_PREFIX=${4:-"icon-"}        # Prefix for icons `id` attribute
-TMP_FILE=$TMP_FOLDER/sprite.tmp  # Temporary file for manipulation
+SVG_FILES=$1                              # Folder containing all SVG files
+DEST_FILE=${DEST_FILE:-./sprite.svg}      # Destination file for the sprite
+VIEWBOX_SIZE=${VIEWBOX_SIZE:-"0 0 20 20"} # Viewbox size for <symbol> icons
+ICON_PREFIX=${ICON_PREFIX:-"icon-"}       # Prefix for icons `id` attribute
+TMP_FILE=$TMP_FOLDER/sprite.tmp           # Temporary file for manipulation
 
 # Clean up and start fresh
 rm -rf $DEST_FILE && touch $DEST_FILE
@@ -31,7 +48,7 @@ rm -rf $TMP_FOLDER && mkdir $TMP_FOLDER && touch $TMP_FILE
 
 # Iterate on the SVG files and wrap them in <symbol> with the
 # appropriate id and viewbox attributes
-for f in $SVG_FILES; do
+for f in $SVG_FILES/*; do
   NAME=$(basename $f .svg)
   if [ -f $f ]; then
     (
