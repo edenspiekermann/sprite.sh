@@ -10,16 +10,16 @@
 # 1. Generate `sprite.svg` from SVG files in current folder.
 #    $ bin/sprite.sh
 # 2. Generate `sprite.svg` from SVG files in `assets/images/icons`.
-#    $ bin/sprite.sh assets/images/icons/*
+#    $ bin/sprite.sh "assets/images/icons/*"
 # 3. Generate `_includes/icons.svg` from SVG files in `assets/images/icons`.
-#    $ bin/sprite.sh assets/images/icons/* _includes/icons.svg
+#    $ bin/sprite.sh "assets/images/icons/*" _includes/icons.svg
 # 4. Generate `_includes/icons.svg` from SVG files in `assets/images/icons` with a view box of `0 0 16 16`.
-#    $ bin/sprite.sh assets/images/icons/* _includes/icons.svg "0 0 16 16"
+#    $ bin/sprite.sh "assets/images/icons/*" _includes/icons.svg "0 0 16 16"
 # 5. Generate `_includes/icons.svg` from SVG files in `assets/images/icons` with a view box of `0 0 16 16`, and `id` attributes prefixed with `i_`.
-#    $ bin/sprite.sh assets/images/icons/* _includes/icons.svg "0 0 16 16" "i_"
+#    $ bin/sprite.sh "assets/images/icons/*" _includes/icons.svg "0 0 16 16" "i_"
 
 TMP_FOLDER=.tmp
-SVG_FILES=${1:-./*}              # Folder containing all SVG files
+SVG_FILES=${1:-"./*"}            # Folder containing all SVG files
 DEST_FILE=${2:-./sprite.svg}     # Destination file for the sprite
 VIEWBOX_SIZE=${3:-"0 0 20 20"}   # Viewbox size for <symbol> icons
 ICON_PREFIX=${4:-"icon-"}        # Prefix for icons `id` attribute
