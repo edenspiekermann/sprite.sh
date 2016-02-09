@@ -5,8 +5,7 @@ A Bash script to build a SVG sprite from a folder of SVG files (typically icons)
 ## Usage
 
 ```sh
-bin/sprite.sh <dir>
-bin/sprite.sh <dir> [-o|--output <file>] [-v|--viewport <string>] [-p|--prefix <string>]
+bin/sprite.sh <dir> [-o|--output <file>] [-v|--viewport <string>] [-p|--prefix <string>] [--verbose]
 ```
 
 ## Example

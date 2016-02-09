@@ -7,8 +7,11 @@
 # https://css-tricks.com/svg-symbol-good-choice-icons/
 # https://css-tricks.com/svg-use-external-source/
 
+SVG_FILES=$1 # Folder containing all SVG files
+shift
+
 # Grabbing options
-while [[ $# > 1 ]]; do
+while [[ $# > 0 ]]; do
   key="$1"
   case $key in
     -o|--output)
@@ -23,6 +26,9 @@ while [[ $# > 1 ]]; do
     ICON_PREFIX="$2"
     shift
     ;;
+    --verbose)
+    VERBOSE=YES
+    ;;
     *)
     ;;
   esac
@@ -31,11 +37,11 @@ done
 
 # Set configuration
 TMP_FOLDER=.tmp
-SVG_FILES=$1                              # Folder containing all SVG files
 DEST_FILE=${DEST_FILE:-./sprite.svg}      # Destination file for the sprite
 VIEWBOX_SIZE=${VIEWBOX_SIZE:-"0 0 20 20"} # Viewbox size for <symbol> icons
 ICON_PREFIX=${ICON_PREFIX:-"icon-"}       # Prefix for icons `id` attribute
 TMP_FILE=$TMP_FOLDER/sprite.tmp           # Temporary file for manipulation
+VERBOSE=${VERBOSE:-NO}                    # Enable the verbose console mode
 
 # Clean up and start fresh
 rm -rf $DEST_FILE && touch $DEST_FILE
@@ -45,6 +51,9 @@ rm -rf $TMP_FOLDER && mkdir $TMP_FOLDER && touch $TMP_FILE
 # appropriate id and viewbox attributes
 for f in $SVG_FILES/*; do
   NAME=$(basename $f .svg)
+  if [ $VERBOSE == YES ]; then
+    echo "Processing $f …"
+  fi
   if [ -f $f ]; then
     (
       echo "<symbol id='$ICON_PREFIX$NAME' viewbox='$VIEWBOX_SIZE'>";
