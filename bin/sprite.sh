@@ -7,7 +7,15 @@
 # https://css-tricks.com/svg-symbol-good-choice-icons/
 # https://css-tricks.com/svg-use-external-source/
 
-SVG_FILES=$1 # Folder containing all SVG files
+# Set configuration
+TMP_FOLDER=.tmp                 # Temporary directory for sprites
+SVG_FILES=$1                    # Folder containing all SVG files
+DEST_FILE=sprite.svg            # Destination file for the sprite
+VIEWBOX_SIZE="0 0 20 20"        # Viewbox size for <symbol> icons
+ICON_PREFIX=icon-               # Prefix for icons `id` attribute
+TMP_FILE=$TMP_FOLDER/sprite.tmp # Temporary file for manipulation
+VERBOSE=NO                      # Enable the verbose console mode
+
 shift
 
 # Grabbing options
@@ -34,14 +42,6 @@ while [[ $# > 0 ]]; do
   esac
   shift
 done
-
-# Set configuration
-TMP_FOLDER=.tmp
-DEST_FILE=${DEST_FILE:-./sprite.svg}      # Destination file for the sprite
-VIEWBOX_SIZE=${VIEWBOX_SIZE:-"0 0 20 20"} # Viewbox size for <symbol> icons
-ICON_PREFIX=${ICON_PREFIX:-"icon-"}       # Prefix for icons `id` attribute
-TMP_FILE=$TMP_FOLDER/sprite.tmp           # Temporary file for manipulation
-VERBOSE=${VERBOSE:-NO}                    # Enable the verbose console mode
 
 # Clean up and start fresh
 rm -rf $DEST_FILE && touch $DEST_FILE
