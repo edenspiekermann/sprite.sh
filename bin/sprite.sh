@@ -72,4 +72,6 @@ done
 ) > $TMP_FILE && mv $TMP_FILE $DEST_FILE
 
 # Announce when it’s over
-echo "File $DEST_FILE successfully generated."
+if [ $VERBOSE == YES ]; then
+  echo "File $DEST_FILE successfully generated."
+fi
