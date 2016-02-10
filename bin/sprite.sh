@@ -8,12 +8,10 @@
 # https://css-tricks.com/svg-use-external-source/
 
 # Set configuration
-TMP_FOLDER=.tmp                 # Temporary directory for sprites
 SVG_FILES=$1                    # Folder containing all SVG files
 DEST_FILE=sprite.svg            # Destination file for the sprite
 VIEWBOX_SIZE="0 0 20 20"        # Viewbox size for <symbol> icons
 ICON_PREFIX=icon-               # Prefix for icons `id` attribute
-TMP_FILE=$TMP_FOLDER/sprite.tmp # Temporary file for manipulation
 VERBOSE=NO                      # Enable the verbose console mode
 
 shift
@@ -43,35 +41,31 @@ while [[ $# > 0 ]]; do
   shift
 done
 
+echo_verbose ()
+{
+  if [ $VERBOSE == YES ]; then
+    echo $1
+  fi
+}
+
 # Clean up and start fresh
-rm -rf $DEST_FILE && touch $DEST_FILE
-rm -rf $TMP_FOLDER && mkdir $TMP_FOLDER && touch $TMP_FILE
+rm -rf $DEST_FILE
+
+# Start the dest file
+echo "<svg xmlns='http://www.w3.org/2000/svg' style='display: none;'>" > $DEST_FILE
 
 # Iterate on the SVG files and wrap them in <symbol> with the
 # appropriate id and viewbox attributes
 for f in $SVG_FILES/*; do
   NAME=$(basename $f .svg)
-  if [ $VERBOSE == YES ]; then
-    echo "Processing $f …"
-  fi
+  echo_verbose "Processing $f …"
   if [ -f $f ]; then
-    (
-      echo "<symbol id='$ICON_PREFIX$NAME' viewbox='$VIEWBOX_SIZE'>";
-      echo "  <title>$NAME</title>";
-      sed 's/^/  /' $f;
-      echo "</symbol>";
-    ) >> $DEST_FILE
+    echo "<symbol id='$ICON_PREFIX$NAME' viewbox='$VIEWBOX_SIZE'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
   fi
 done
 
-# Wrap the sprite file with `<svg>`
-(
-  echo "<svg xmlns='http://www.w3.org/2000/svg' style='display: none;'>";
-  sed 's/^/  /' $DEST_FILE;
-  echo "</svg>"
-) > $TMP_FILE && mv $TMP_FILE $DEST_FILE
+# End the dest file
+echo "</svg>" >> $DEST_FILE
 
 # Announce when it’s over
-if [ $VERBOSE == YES ]; then
-  echo "File $DEST_FILE successfully generated."
-fi
+echo_verbose "File $DEST_FILE successfully generated."
