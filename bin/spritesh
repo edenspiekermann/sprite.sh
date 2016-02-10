@@ -40,7 +40,7 @@ main ()
 {
   echo "<svg xmlns='http://www.w3.org/2000/svg' style='display: none;'>" > $DEST_FILE
 
-  for f in $SRC_FOLDER/*; do
+  for f in $SRC_FOLDER/*.svg; do
     NAME=$(basename $f .svg)
     echo_verbose "Processing $f …"
     if [ -f $f ]; then
