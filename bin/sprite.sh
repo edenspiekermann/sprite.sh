@@ -1,71 +1,88 @@
 #!/bin/bash
 
-# The following bash script generates a SVG icons sprite
-# from a folder of SVG files.
-# More information on this idea on CSS-Tricks:
-# https://css-tricks.com/svg-sprites-use-better-icon-fonts/
-# https://css-tricks.com/svg-symbol-good-choice-icons/
-# https://css-tricks.com/svg-use-external-source/
+PROGNAME=${0##*/}
+SRC_FOLDER=.
+DEST_FILE=sprite.svg
+VIEWBOX_SIZE="0 0 20 20"
+ID_PREFIX=""
+QUIET="0"
 
-# Set configuration
-SVG_FILES=$1                    # Folder containing all SVG files
-DEST_FILE=sprite.svg            # Destination file for the sprite
-VIEWBOX_SIZE="0 0 20 20"        # Viewbox size for <symbol> icons
-ICON_PREFIX=icon-               # Prefix for icons `id` attribute
-VERBOSE=NO                      # Enable the verbose console mode
+usage()
+{
+  cat <<EO
+Usage: $PROGNAME [options]
+Script to build a SVG sprite from a folder of SVG files.
+Options:
+EO
+cat <<EO | column -s\& -t
+  -h, --help       & shows this help
+  -q, --quiet      & disables output
+  -i, --input [dir] & specify input dir (current dir by default)
+  -o, --output [file] & specify output file ("./sprite.svg" by default)
+  -v, --viewbox [str] & specify viewbox attribute ("0 0 20 20" by default)
+  -p, --prefix [str] & specify prefix for id attribute (none by default)
+EO
+}
 
-shift
+echo_verbose ()
+{
+  if [ $QUIET == "0" ]; then
+    echo $1
+  fi
+}
+
+clean ()
+{
+  rm -rf $DEST_FILE
+}
+
+main ()
+{
+  echo "<svg xmlns='http://www.w3.org/2000/svg' style='display: none;'>" > $DEST_FILE
+
+  for f in $SRC_FOLDER/*; do
+    NAME=$(basename $f .svg)
+    echo_verbose "Processing $f …"
+    if [ -f $f ]; then
+      echo "<symbol id='$ID_PREFIX$NAME' viewbox='$VIEWBOX_SIZE'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
+    fi
+  done
+
+  echo "</svg>" >> $DEST_FILE
+}
 
 # Grabbing options
 while [[ $# > 0 ]]; do
   key="$1"
   case $key in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -i|--input)
+      SRC_FOLDER="$2"
+      shift
+      ;;
     -o|--output)
-    DEST_FILE="$2"
-    shift
-    ;;
+      DEST_FILE="$2"
+      shift
+      ;;
     -v|--viewbox)
-    VIEWBOX_SIZE="$2"
-    shift
-    ;;
+      VIEWBOX_SIZE="$2"
+      shift
+      ;;
     -p|--prefix)
-    ICON_PREFIX="$2"
-    shift
-    ;;
-    --verbose)
-    VERBOSE=YES
-    ;;
+      ID_PREFIX="$2"
+      shift
+      ;;
+    -q|--quiet)
+      QUIET="1"
+      ;;
     *)
-    ;;
+      ;;
   esac
   shift
 done
 
-echo_verbose ()
-{
-  if [ $VERBOSE == YES ]; then
-    echo $1
-  fi
-}
-
-# Clean up and start fresh
-rm -rf $DEST_FILE
-
-# Start the dest file
-echo "<svg xmlns='http://www.w3.org/2000/svg' style='display: none;'>" > $DEST_FILE
-
-# Iterate on the SVG files and wrap them in <symbol> with the
-# appropriate id and viewbox attributes
-for f in $SVG_FILES/*; do
-  NAME=$(basename $f .svg)
-  echo_verbose "Processing $f …"
-  if [ -f $f ]; then
-    echo "<symbol id='$ICON_PREFIX$NAME' viewbox='$VIEWBOX_SIZE'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
-  fi
-done
-
-# End the dest file
-echo "</svg>" >> $DEST_FILE
-
-# Announce when it’s over
-echo_verbose "File $DEST_FILE successfully generated."
+clean
+main && echo_verbose "File $DEST_FILE successfully generated."
