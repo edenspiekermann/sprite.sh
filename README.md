@@ -5,7 +5,7 @@ A Bash script to build a SVG sprite from a folder of SVG files (typically icons)
 ## Usage
 
 ```sh
-Usage: sprite.sh [options]
+Usage: spritesh [options]
 Script to build a SVG sprite from a folder of SVG files.
 Options:
   -h, --help             shows this help
@@ -21,29 +21,29 @@ Options:
 1. Generate `sprite.svg` from SVG files in current folder (all defaults).
 
     ```sh
-    bin/sprite.sh
+    bin/spritesh
     ```
 
 2. Generate `sprite.svg` from SVG files in `assets/images/icons`.
 
     ```sh
-    bin/sprite.sh --input assets/images/icons
+    bin/spritesh --input assets/images/icons
     ```
 
 3. Generate `_includes/icons.svg` from SVG files in current folder.
 
     ```sh
-    bin/sprite.sh --output _includes/icons.svg
+    bin/spritesh --output _includes/icons.svg
     ```
 
 4. Generate `sprite.svg` from SVG files in current folder with a view box of `0 0 16 16`.
 
     ```sh
-    bin/sprite.sh --viewbox "0 0 16 16"
+    bin/spritesh --viewbox "0 0 16 16"
     ```
 
 5. Generate `sprite.svg` from SVG files in current folder with `id` attributes prefixed with `i_`.
 
     ```sh
-    bin/sprite.sh --prefix i_
+    bin/spritesh --prefix i_
     ```
