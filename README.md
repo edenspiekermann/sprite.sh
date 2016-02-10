@@ -16,12 +16,12 @@ npm install spritesh -g
 Usage: spritesh [options]
 Script to build a SVG sprite from a folder of SVG files.
 Options:
-  -h, --help             shows this help
-  -q, --quiet            disables output
-  -i, --input [dir]      specify input dir (current dir by default)
-  -o, --output [file]    specify output file ("./sprite.svg" by default)
-  -v, --viewbox [str]    specify viewbox attribute ("0 0 20 20" by default)
-  -p, --prefix [str]     specify prefix for id attribute (none by default)
+  -h, --help             Shows this help
+  -q, --quiet            Disables informative output
+  -i, --input [dir]      Specifies input dir (current dir by default)
+  -o, --output [file]    Specifies output file ("./sprite.svg" by default)
+  -v, --viewbox [str]    Specifies viewbox attribute ("0 0 20 20" by default)
+  -p, --prefix [str]     Specifies prefix for id attribute (none by default)
 ```
 
 ## Example
