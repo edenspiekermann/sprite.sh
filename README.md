@@ -12,7 +12,7 @@ npm install spritesh -g
 
 ## Usage
 
-```sh
+```
 Usage: spritesh [options]
 Script to build a SVG sprite from a folder of SVG files.
 Options:
@@ -55,3 +55,13 @@ Options:
     ```sh
     spritesh --prefix i_
     ```
+
+## SVG Optimisation
+
+spritesh is a teeny tiny Bash script that takes care of SVG files concatenation; it does not perform any SVG optimisation. I recommend you add [svgo](https://github.com/svg/svgo) (or similar tool) to your workflow to have an optimised and efficient SVG sprite.
+
+An example that starts with improving the SVG files, then build a sprite could be:
+
+```
+svgo -f assets/images/icons && spritesh -i assets/images/icons
+```
