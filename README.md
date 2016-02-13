@@ -8,7 +8,7 @@ A Bash script to build a SVG sprite from a folder of SVG files (typically icons)
 npm install spritesh -g
 ```
 
-*Or you know, you can also just copy [the script](https://github.com/edenspiekermann/sprite.sh/blob/master/spritesh).*
+*Or you know, you can also just copy [the script](https://raw.githubusercontent.com/edenspiekermann/sprite.sh/master/bin/spritesh).*
 
 ## Usage
 
