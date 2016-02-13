@@ -44,7 +44,7 @@ main ()
     NAME=$(basename $f .svg)
     echo_verbose "Processing $f …"
     if [ -f $f ]; then
-      echo "<symbol id='$ID_PREFIX$NAME' viewbox='$VIEWBOX_SIZE'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
+      echo "<symbol id='$ID_PREFIX$NAME' viewBox='$VIEWBOX_SIZE'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
     fi
   done
 
