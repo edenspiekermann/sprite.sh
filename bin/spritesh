@@ -46,7 +46,7 @@ main ()
     echo_verbose "Processing $f (viewBox $VIEWBOX)…"
 
     if [ -f $f ]; then
-      echo "<symbol id='$ID_PREFIX$NAME' viewBox='$VIEWBOX'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
+      echo "<symbol id='$ID_PREFIX$NAME' viewBox='$VIEWBOX'>$(cat $f)</symbol>" >> $DEST_FILE
     fi
   done
 
