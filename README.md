@@ -65,3 +65,39 @@ An example that starts with improving the SVG files, then build a sprite could b
 ```
 svgo -f assets/images/icons && spritesh -i assets/images/icons
 ```
+
+## Accessibility
+
+spritesh doesn’t help with SVG icons accessibility in itself. It is the responsibility of the developer (a.k.a *you*) to make sure the original icon files are including the relevant accessibility bits: a `<title>` tag with and `id` attribute.
+
+For instance, a `logo.svg` icon could look like this:
+
+```svg
+<svg …>
+  <title id="icon-brand-name">Your company/product name here</title>
+  <!-- SVG content -->
+</svg>
+```
+
+Which will generate this sprite (where `icon-` is the `--prefix` option):
+
+```svg
+<!-- sprite -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-brand" viewBox="0 0 20 20">
+    <svg …>
+      <title id="icon-brand-name">Your company/product name here</title>
+      <!-- SVG Content -->
+    </svg>
+  </symbol>
+  <!-- Other symbols -->
+</svg>
+```
+
+Later on, when using the sprite through `<svg>`/`<use>`, add an `aria-labelledby` attribute to the `<svg>` element referencing the relevant `<title>` id.
+
+```html
+<svg class="logo" aria-labelledby="icon-brand-title">
+  <use xlink:href="#icon-brand"></use>
+</svg>
+```
