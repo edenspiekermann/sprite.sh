@@ -3,7 +3,6 @@
 PROGNAME=${0##*/}
 SRC_FOLDER=.
 DEST_FILE=sprite.svg
-VIEWBOX_SIZE="0 0 20 20"
 ID_PREFIX=""
 QUIET="0"
 
@@ -19,7 +18,7 @@ cat <<EO | column -s\& -t
   -q, --quiet      & Disables informative output
   -i, --input [dir] & Specifies input dir (current dir by default)
   -o, --output [file] & Specifies output file ("./sprite.svg" by default)
-  -v, --viewbox [str] & Specifies viewbox attribute ("0 0 20 20" by default)
+  -v, --viewbox [str] & Specifies viewBox attribute (parsed by default)
   -p, --prefix [str] & Specifies prefix for id attribute (none by default)
 EO
 }
@@ -42,9 +41,12 @@ main ()
 
   for f in $SRC_FOLDER/*.svg; do
     NAME=$(basename $f .svg)
-    echo_verbose "Processing $f …"
+    VIEWBOX=${VIEWBOX_SIZE:-$(sed -n -E 's/.*viewBox="([^"]+)".*/\1/p' $f)}
+
+    echo_verbose "Processing $f (viewBox $VIEWBOX)…"
+
     if [ -f $f ]; then
-      echo "<symbol id='$ID_PREFIX$NAME' viewBox='$VIEWBOX_SIZE'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
+      echo "<symbol id='$ID_PREFIX$NAME' viewBox='$VIEWBOX'><title>$NAME</title>$(cat $f)</symbol>" >> $DEST_FILE
     fi
   done
 
