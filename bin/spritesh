@@ -37,20 +37,20 @@ clean ()
 
 main ()
 {
-  echo "<svg xmlns='http://www.w3.org/2000/svg' style='display: none;'>" > $DEST_FILE
-
   for f in $SRC_FOLDER/*.svg; do
-    NAME=$(basename $f .svg)
-    VIEWBOX=${VIEWBOX_SIZE:-$(sed -n -E 's/.*viewBox="([^"]+)".*/\1/p' $f)}
-
-    echo_verbose "Processing $f (viewBox $VIEWBOX)…"
-
     if [ -f $f ]; then
+      NAME=$(basename $f .svg)
+      VIEWBOX=${VIEWBOX_SIZE:-$(sed -n -E 's/.*viewBox="([^"]+)".*/\1/p' $f)}
+
+      echo_verbose "Processing \`$f\` (viewBox \`$VIEWBOX\`)…"
       echo "<symbol id='$ID_PREFIX$NAME' viewBox='$VIEWBOX'>$(cat $f)</symbol>" >> $DEST_FILE
     fi
   done
 
-  echo "</svg>" >> $DEST_FILE
+  if [ -f ${DEST_FILE} ]; then
+    awk 'BEGIN{print "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\">"}{print}END{print "</svg>"}' $DEST_FILE > .spritesh && mv .spritesh $DEST_FILE
+  fi
+
 }
 
 # Grabbing options
@@ -87,4 +87,10 @@ while [[ $# > 0 ]]; do
 done
 
 clean
-main && echo_verbose "File $DEST_FILE successfully generated."
+main
+
+if [ -f $f ]; then
+  echo_verbose "File \`$DEST_FILE\` successfully generated."
+else
+  echo_verbose "Could not generated \`$DEST_FILE\`. Are there any SVG file in \`$SRC_FOLDER\` folder?"
+fi
