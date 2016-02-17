@@ -89,7 +89,7 @@ done
 clean
 main
 
-if [ -f $f ]; then
+if [ -f $DEST_FILE ]; then
   echo_verbose "File \`$DEST_FILE\` successfully generated."
 else
   echo_verbose "Could not generated \`$DEST_FILE\`. Are there any SVG file in \`$SRC_FOLDER\` folder?"
