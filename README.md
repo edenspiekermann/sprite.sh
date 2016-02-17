@@ -20,7 +20,7 @@ Options:
   -q, --quiet            Disables informative output
   -i, --input [dir]      Specifies input dir (current dir by default)
   -o, --output [file]    Specifies output file ("./sprite.svg" by default)
-  -v, --viewbox [str]    Specifies viewbox attribute ("0 0 20 20" by default)
+  -v, --viewbox [str]    Specifies viewBox attribute (parsed by default)
   -p, --prefix [str]     Specifies prefix for id attribute (none by default)
 ```
 
