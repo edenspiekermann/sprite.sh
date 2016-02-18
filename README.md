@@ -10,6 +10,8 @@ npm install spritesh -g
 
 *Or you know, you can also just copy [the script](https://raw.githubusercontent.com/edenspiekermann/sprite.sh/master/bin/spritesh).*
 
+*[Cade Scroggins](https://github.com/cadejscroggins) also made [a Ruby Gem](https://rubygems.org/gems/spritesh) out of it.*
+
 ## Usage
 
 ```
