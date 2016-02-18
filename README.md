@@ -26,7 +26,7 @@ Options:
   -p, --prefix [str]     Specifies prefix for id attribute (none by default)
 ```
 
-## Example
+## Examples
 
 1. Generate `sprite.svg` from SVG files in current folder (all defaults).
 
