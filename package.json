@@ -3,10 +3,10 @@
   "version": "1.0.6",
   "preferGlobal": true,
   "description": "A Bash script to build a SVG sprite from a folder of SVG files (typically icons).",
-  "bin": "bin/spritesh",
+  "bin": "bin/npm/spritesh",
   "homepage": "https://github.com/edenspiekermann/sprite.sh",
   "keywords": ["svg", "sprite", "bash", "script"],
   "license": "MIT",
   "author": "Hugo Giraudel <h.giraudel@de.edenspiekermann.com> (www.edenspiekermann.com/people/hugo-giraudel)",
-  "files": ["bin"]
+  "files": ["bin/npm"]
 }
