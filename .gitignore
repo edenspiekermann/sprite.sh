@@ -1,6 +1,1 @@
-# copied files
-bin/gem/sprite.sh
-bin/npm/spritesh
-
-# built gems
 spritesh-*
