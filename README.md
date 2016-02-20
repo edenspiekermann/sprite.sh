@@ -101,7 +101,7 @@ Which will generate this sprite (where `icon-` is the `--prefix` option):
 Later on, when using the sprite through `<svg>`/`<use>`, add an `aria-labelledby` attribute to the `<svg>` element referencing the relevant `<title>` id.
 
 ```html
-<svg class="logo" aria-labelledby="icon-brand-title">
+<svg class="logo" aria-labelledby="icon-brand-name">
   <use xlink:href="#icon-brand"></use>
 </svg>
 ```
