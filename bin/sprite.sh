@@ -48,7 +48,7 @@ main ()
   done
 
   if [ -f ${DEST_FILE} ]; then
-    awk 'BEGIN{print "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\">"}{print}END{print "</svg>"}' $DEST_FILE > .spritesh && mv .spritesh $DEST_FILE
+    awk 'BEGIN{print "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"display:none\">"}{print}END{print "</svg>"}' $DEST_FILE > .spritesh && mv .spritesh $DEST_FILE
   fi
 
 }
