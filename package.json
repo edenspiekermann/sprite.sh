@@ -1,6 +1,6 @@
 {
   "name": "spritesh",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "preferGlobal": true,
   "description": "A Bash script to build a SVG sprite from a folder of SVG files (typically icons).",
   "bin": "bin/sprite.sh",
