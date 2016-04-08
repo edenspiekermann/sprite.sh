@@ -12,7 +12,7 @@ npm install spritesh -g
 gem install spritesh
 ```
 
-*Or you know, you can also just copy [the script](https://raw.githubusercontent.com/edenspiekermann/sprite.sh/master/bin/spritesh).*
+*Or you know, you can also just copy [the script](https://raw.githubusercontent.com/edenspiekermann/sprite.sh/master/bin/sprite.sh).*
 
 ## Usage
 
