@@ -1,8 +1,8 @@
 #!/bin/bash
 
-PROGNAME=${0##*/}
-SRC_FOLDER=.
-DEST_FILE=sprite.svg
+PROGNAME="${0##*/}"
+SRC_FOLDER="."
+DEST_FILE="sprite.svg"
 ID_PREFIX=""
 QUIET="0"
 
@@ -25,38 +25,38 @@ EO
 
 echo_verbose ()
 {
-  if [ $QUIET == "0" ]; then
-    echo $1
+  if [ "$QUIET" == "0" ]; then
+    echo "$1"
   fi
 }
 
 clean ()
 {
-  rm -rf $DEST_FILE
+  rm -rf "$DEST_FILE"
 }
 
 main ()
 {
-  for f in $SRC_FOLDER/*.svg; do
-    if [ -f $f ]; then
-      NAME=$(basename $f .svg)
-      VIEWBOX=${VIEWBOX_SIZE:-$(sed -n -E 's/.*viewBox="([^"]+)".*/\1/p' $f)}
+  for f in "$SRC_FOLDER"/*.svg; do
+    if [ -f "$f" ]; then
+      NAME="$(basename "$f" .svg)"
+      VIEWBOX="${VIEWBOX_SIZE:-$(sed -n -E 's/.*viewBox="([^"]+)".*/\1/p' "$f")}"
+      ID="$(echo "$ID_PREFIX$NAME" | tr ' ' '-')"
 
       echo_verbose "Processing \`$f\` (viewBox \`$VIEWBOX\`)…"
-      echo "<symbol id='$ID_PREFIX$NAME' viewBox='$VIEWBOX'>$(cat $f)</symbol>" >> $DEST_FILE
+      echo "<symbol id='$ID' viewBox='$VIEWBOX'>$(cat "$f")</symbol>" >> "$DEST_FILE"
     fi
   done
 
-  if [ -f ${DEST_FILE} ]; then
-    awk 'BEGIN{print "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"display:none\">"}{print}END{print "</svg>"}' $DEST_FILE > .spritesh && mv .spritesh $DEST_FILE
+  if [ -f "$DEST_FILE" ]; then
+    awk 'BEGIN{print "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"display:none\">"}{print}END{print "</svg>"}' "$DEST_FILE" > .spritesh && mv .spritesh "$DEST_FILE"
   fi
-
 }
 
 # Grabbing options
 while [[ $# > 0 ]]; do
   key="$1"
-  case $key in
+  case "$key" in
     -h|--help)
       usage
       exit 0
@@ -89,7 +89,7 @@ done
 clean
 main
 
-if [ -f $DEST_FILE ]; then
+if [ -f "$DEST_FILE" ]; then
   echo_verbose "File \`$DEST_FILE\` successfully generated."
 else
   echo_verbose "Could not generated \`$DEST_FILE\`. Are there any SVG file in \`$SRC_FOLDER\` folder?"
