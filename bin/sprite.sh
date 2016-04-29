@@ -44,7 +44,7 @@ main ()
       ID="$(echo "$ID_PREFIX$NAME" | tr ' ' '-')"
 
       echo_verbose "Processing \`$f\` (viewBox \`$VIEWBOX\`)…"
-      echo "<symbol id='$ID' viewBox='$VIEWBOX'>$(cat "$f")</symbol>" >> "$DEST_FILE"
+      echo "<symbol id='$ID' viewBox='$VIEWBOX'>$(perl -pe 's/\s*?<\/??svg.*?>\s*?\n//gi' "$f")</symbol>" >> "$DEST_FILE"
     fi
   done
 
