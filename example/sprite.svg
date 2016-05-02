@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none">
-<symbol id='brand' viewBox='0 0 20 20'><svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-<title id="icon-brand-title">Brand</title>
+<symbol id='brand' viewBox='0 0 20 20'><title id="icon-brand-title">Brand</title>
 <g>
 	<path d="M17.559,6.621c-0.277,0-0.508,0.227-0.508,0.509v3.087L8.496,18.77l-6.252-6.252l8.676-8.68h3.01
 		c0.287,0,0.52-0.226,0.52-0.509c0-0.282-0.232-0.508-0.52-0.508h-3.223c-0.125,0-0.26,0.051-0.355,0.148l-9.195,9.183
@@ -14,10 +13,8 @@
 	<circle cx="14.392" cy="6.016" r="0.741"/>
 	<path d="M18.479,0c-0.279,0-0.51,0.226-0.51,0.508v1.513l-2.301,2.297c-0.197,0.202-0.197,0.524,0,0.722
 		c0.098,0.099,0.23,0.148,0.365,0.148c0.123,0,0.256-0.049,0.355-0.148l2.598-2.598V0.508C18.986,0.226,18.766,0,18.479,0z"/>
-</g>
-</svg></symbol>
-<symbol id='education' viewBox='0 0 20 20'><svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-<title id="icon-education-title">Education</title>
+</g></symbol>
+<symbol id='education' viewBox='0 0 20 20'><title id="icon-education-title">Education</title>
 <path d="M19.72,5.017l-9.656-3.29c-0.086-0.03-0.18-0.029-0.267,0L0.278,5.005C0.113,5.062,0,5.219,0,5.395
   C0,5.57,0.11,5.728,0.275,5.786l2.847,0.998v4.149c0,0.133,0.064,0.259,0.173,0.336c0.112,0.08,2.733,1.934,6.407,1.934
   c0.102,0,0.205-0.002,0.31-0.005c1.507-0.043,2.837-0.344,3.908-0.694c-0.163,0.75-0.354,1.526-0.519,2.193
@@ -31,10 +28,8 @@
   C13.033,11.95,11.611,12.325,9.987,12.371z M16.007,10.684c-0.157,0.092-0.415,0.231-0.753,0.393
   c-0.065-0.352-0.116-0.678-0.147-0.957c0.017-1.333-0.022-2.159-0.135-2.683l1.035-0.357V10.684z M14.545,6.709
   c-0.423-0.293-1.509-0.836-4.431-1.859c-0.217-0.076-0.45,0.039-0.526,0.254S9.626,5.555,9.841,5.63
-  c1.337,0.468,2.835,1.05,3.666,1.438L9.94,8.299l-8.269-2.9l8.26-2.844l8.38,2.855L14.545,6.709z"/>
-</svg></symbol>
-<symbol id='media' viewBox='0 0 20 20'><svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-<title id="icon-media-title">Media</title>
+  c1.337,0.468,2.835,1.05,3.666,1.438L9.94,8.299l-8.269-2.9l8.26-2.844l8.38,2.855L14.545,6.709z"/></symbol>
+<symbol id='media' viewBox='0 0 20 20'><title id="icon-media-title">Media</title>
 <g>
 	<path d="M3.803,0.128C3.601-0.055,3.289-0.041,3.105,0.162c-0.082,0.09-2.009,2.25-2.009,5.445c0,3.204,1.846,5.152,1.924,5.233
 		c0.097,0.1,0.226,0.15,0.354,0.15c0.123,0,0.245-0.046,0.342-0.137c0.197-0.189,0.203-0.5,0.016-0.697
@@ -52,6 +47,5 @@
 		C18.904,2.412,16.975,0.252,16.895,0.162z"/>
 	<path d="M10.002,8.158H9.986c-0.18,0-0.336,0.148-0.34,0.33L9.334,19.67c-0.006,0.18,0.139,0.329,0.322,0.329h0.652
 		c0.186,0,0.325-0.146,0.321-0.329L10.34,8.488C10.336,8.309,10.184,8.158,10.002,8.158z"/>
-</g>
-</svg></symbol>
+</g></symbol>
 </svg>
