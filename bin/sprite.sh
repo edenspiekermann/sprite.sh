@@ -41,10 +41,16 @@ main ()
     if [ -f "$f" ]; then
       NAME="$(basename "$f" .svg)"
       VIEWBOX="${VIEWBOX_SIZE:-$(sed -n -E 's/.*viewBox="([^"]+)".*/\1/p' "$f")}"
+      PRESERVEASPECTRATIO="$(sed -n -E 's/.*preserveAspectRatio="([^"]+)".*/\1/p' "$f")"
       ID="$(echo "$ID_PREFIX$NAME" | tr ' ' '-')"
-
-      echo_verbose "Processing \`$f\` (viewBox \`$VIEWBOX\`)…"
-      echo "<symbol id='$ID' viewBox='$VIEWBOX'>$(perl -pe 's/\s*?<\/??svg.*?>\s*?\n//gi' "$f")</symbol>" >> "$DEST_FILE"
+      
+      ATTRS="viewBox='$VIEWBOX'"
+      if [[ !  -z  $PRESERVEASPECTRATIO  ]]; then
+        ATTRS="$ATTRS preserveAspectRatio='$PRESERVEASPECTRATIO'"
+      fi
+    
+      echo_verbose "Processing \`$f\` (\`$ATTRS\`)…"
+      echo "<symbol id='$ID' $ATTRS>$(perl -pe 's/\s*?<\/??svg.*?>\s*?\n//gi' "$f")</symbol>" >> "$DEST_FILE"
     fi
   done
 

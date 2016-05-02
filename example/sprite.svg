@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none">
-<symbol id='brand' viewBox='0 0 20 20'><title id="icon-brand-title">Brand</title>
+<symbol id='brand' viewBox='0 0 20 20' preserveAspectRatio='xMidYMid slice'><title id="icon-brand-title">Brand</title>
 <g>
 	<path d="M17.559,6.621c-0.277,0-0.508,0.227-0.508,0.509v3.087L8.496,18.77l-6.252-6.252l8.676-8.68h3.01
 		c0.287,0,0.52-0.226,0.52-0.509c0-0.282-0.232-0.508-0.52-0.508h-3.223c-0.125,0-0.26,0.051-0.355,0.148l-9.195,9.183
