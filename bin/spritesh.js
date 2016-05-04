@@ -19,7 +19,6 @@ const ID_PREFIX = program.prefix || '';
 const VIEWBOX = program.viewbox || null; 
 const QUIET = program.quiet || false;
 
-
 const log = (message) => {
   if (!QUIET) console.log(message);
 };
@@ -37,11 +36,11 @@ const getPreserveAspectRatio = (content) => {
   return getSvgElement(content).attr('preserveaspectratio');
 };
 
-const getId = (fileName) => {
+const constructId = (fileName) => {
   return (ID_PREFIX + fileName).replace(' ', '-');
 };
 
-const getAttributesString = (attributes) => {
+const constructAttributesString = (attributes) => {
   return Object.keys(attributes).reduce((acc, key) => {
     const value = attributes[key]
     return value
@@ -54,8 +53,8 @@ const getSvgContent = (content) => {
   return getSvgElement(content).html();
 };
 
-const getSymbol = (content, attributes) => {
-  return `<symbol ${getAttributesString(attributes)}>
+const createSymbol = (content, attributes) => {
+  return `<symbol ${constructAttributesString(attributes)}>
     ${getSvgContent(content)}
   </symbol>`;
 };
@@ -63,13 +62,13 @@ const getSymbol = (content, attributes) => {
 const wrapFile = (fileName, content) => {
   const attributes = {
     viewBox: getViewbox(content),
-    id: getId(fileName),
+    id: constructId(fileName),
     preserveAspectRatio: getPreserveAspectRatio(content)
   };
 
   log(`Processing ‘${fileName}’ (viewBox ‘${attributes.viewBox}’)…`);
 
-  return getSymbol(content, attributes);
+  return createSymbol(content, attributes);
 };
 
 const processFile = (file) => {
