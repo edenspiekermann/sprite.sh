@@ -30,8 +30,7 @@ const getSvgElement = (content) => {
 };
 
 const getViewbox = (content) => {
-  if (VIEWBOX) return VIEWBOX;
-  return getSvgElement(content).attr('viewbox');
+  return VIEWBOX || getSvgElement(content).attr('viewbox');
 };
 
 const getPreserveAspectRatio = (content) => {
