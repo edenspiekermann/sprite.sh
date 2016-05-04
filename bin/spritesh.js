@@ -60,7 +60,7 @@ const getSymbol = (content, attributes) => {
   </symbol>`;
 };
 
-const wrapFile = (content, fileName) => {
+const wrapFile = (fileName, content) => {
   const attributes = {
     viewBox: getViewbox(content),
     id: getId(fileName),
@@ -75,9 +75,9 @@ const wrapFile = (content, fileName) => {
 const processFile = (file) => {
   const filePath = path.resolve(SRC_FOLDER, file);
   const fileName = path.basename(file, path.extname(file));
+  const wrapContent = wrapFile.bind(null, fileName);
 
-  return fs.readFile(filePath, 'utf8')
-    .then((content) => wrapFile(content, fileName));
+  return fs.readFile(filePath, 'utf8').then(wrapContent);
 };
 
 const removeDestFile = () => {
