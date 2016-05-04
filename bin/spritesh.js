@@ -74,10 +74,7 @@ const wrapFile = (content, fileName) => {
 
 const processFile = (file) => {
   const filePath = path.resolve(SRC_FOLDER, file);
-  const fileExt = path.extname(file);
-  const fileName = path.basename(file, fileExt);
-
-  if (fileExt !== '.svg') return null;
+  const fileName = path.basename(file, path.extname(file));
 
   return fs.readFile(filePath, 'utf8')
     .then((content) => wrapFile(content, fileName));
@@ -92,7 +89,15 @@ const readSrcFolder = (foo) => {
 };
 
 const processFiles = (files) => {
-  return Promise.all(files.map(processFile));
+  const processedFiles = files
+    .filter(filterFile)
+    .map(processFile);
+
+  return Promise.all(processedFiles);
+};
+
+const filterFile = (file) => {
+  return path.extname(file) === '.svg';
 };
 
 const getSpriteContent = (contents) => {
