@@ -10,6 +10,6 @@ Gem::Specification.new do |spec|
   spec.summary       = "Build an SVG sprite from a folder of SVG files."
   spec.authors       = ["Hugo Giraudel", "Cade Scroggins"]
   spec.email         = ["h.giraudel@de.edenspiekermann.com", "hello@cadejs.com"]
-  spec.files         = ["bin/spritesh", "bin/sprite.sh"]
+  spec.files         = ["bin/spritesh", "bin/spritesh.js"]
   spec.executables   = ["spritesh"]
 end
