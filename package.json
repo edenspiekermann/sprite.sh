@@ -1,14 +1,14 @@
 {
   "name": "spritesh",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "preferGlobal": true,
-  "description": "A Bash script to build a SVG sprite from a folder of SVG files (typically icons).",
+  "description": "A script to build a SVG sprite from a folder of SVG files (typically icons).",
   "bin": "bin/spritesh.js",
   "homepage": "https://github.com/edenspiekermann/sprite.sh",
   "keywords": [
     "svg",
     "sprite",
-    "bash",
+    "icons",
     "script"
   ],
   "license": "MIT",
