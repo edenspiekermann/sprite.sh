@@ -60,6 +60,37 @@ Options:
     spritesh --prefix i_
     ```
 
+## Usage with Gulp
+
+Spritesh not having a Node.js API, you will need to use a wrapper around a CLI call to build your sprite from a Node.js script (such as Gulp). To be able to chain tasks, Gulp needs tasks to return a promise or a stream. The `child-process-promise` package is a wrapper around `child_process` from Node.js that “promisify” its API. This makes it possible to execute a command and return a promise once done.
+
+```
+npm install spritesh child-process-promise --save-dev
+```
+
+```js
+var exec = require('child-process-promise').exec;
+var gulp = require('gulp');
+
+// Helper function to build a string based on an object of arguments
+var getArgString = function (args) {
+  return Object.keys(args).reduce(function (acc, arg) {
+    return [acc, arg, args[arg]].join(' ');
+  }, '');
+};
+
+gulp.task('icons', function () {
+  var bin = 'node_modules/.bin/spritesh';
+  var args = {
+    '--input': 'example/icons',
+    '--output': 'example/sprite.svg',
+    '--viewbox': '"0 0 20 20"'
+  };
+
+  return exec(bin + ' ' + getArgString(args));
+});
+```
+
 ## SVG Optimisation
 
 spritesh is a teeny tiny Bash script that takes care of SVG files concatenation; it does not perform any SVG optimisation. I recommend you add [svgo](https://github.com/svg/svgo) (or similar tool) to your workflow to have an optimised and efficient SVG sprite.
