@@ -16,7 +16,7 @@ program
 const SRC_FOLDER = program.input || '.';
 const DEST_FILE = program.output || 'sprite.svg';
 const ID_PREFIX = program.prefix || '';
-const VIEWBOX = program.viewbox || null; 
+const VIEWBOX = program.viewbox || null;
 const QUIET = program.quiet || false;
 
 const log = (message) => {
@@ -100,7 +100,8 @@ const filterFile = (file) => {
 };
 
 const getSpriteContent = (contents) => {
-  return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none">'
+  return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
+    + 'style="width: 0; height: 0; visibility: hidden; position: absolute;" aria-hidden="true">'
     + contents.join('')
     + '</svg>';
 };
