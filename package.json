@@ -1,6 +1,6 @@
 {
   "name": "spritesh",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "preferGlobal": true,
   "description": "A script to build a SVG sprite from a folder of SVG files (typically icons).",
   "bin": "bin/spritesh.js",
