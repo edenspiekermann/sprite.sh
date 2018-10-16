@@ -11,6 +11,7 @@ program
   .option('-v, --viewbox [viewbox]', 'Specifies viewBox attribute (parsed by default)')
   .option('-p, --prefix [prefix]', 'Specifies prefix for id attribute (none by default)')
   .option('-q, --quiet', 'Disable informative output')
+  .option('--no-styles', 'Disable inline styles to visually hide the sprite')
   .parse(process.argv);
 
 const SRC_FOLDER = program.input || '.';
@@ -101,7 +102,10 @@ const filterFile = (file) => {
 
 const getSpriteContent = (contents) => {
   return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
-    + 'style="width: 0; height: 0; visibility: hidden; position: absolute;" aria-hidden="true">'
+    + (!program.styles
+        ? ''
+        : 'style="width: 0; height: 0; visibility: hidden; position: absolute;" ') +
+    + 'aria-hidden="true">'
     + contents.join('')
     + '</svg>';
 };

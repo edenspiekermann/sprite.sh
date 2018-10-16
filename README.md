@@ -26,6 +26,7 @@ Options:
   -o, --output [file]    Specifies output file ("./sprite.svg" by default)
   -v, --viewbox [str]    Specifies viewBox attribute (parsed by default)
   -p, --prefix [str]     Specifies prefix for id attribute (none by default)
+  --no-styles            Disable inline styles to visually hide the sprite
 ```
 
 ## Examples
@@ -58,6 +59,12 @@ Options:
 
     ```sh
     spritesh --prefix i_
+    ```
+
+6. Generate `sprite.svg` from SVG files in current folder with inline styles to visually hide the sprite (can be useful when running a strict Content Security Policy).
+
+    ```sh
+    spritesh --no-styles
     ```
 
 ## SVG Optimisation
